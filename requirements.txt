@@ -3,3 +3,4 @@ Flask-SQLAlchemy
 requests
 Flask-Migrate
 python-dotenv
+gunicorn
