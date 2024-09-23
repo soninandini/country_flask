@@ -1,4 +1,4 @@
-# app/__init__.py
+
 
 from flask import Flask
 from flask_sqlalchemy import SQLAlchemy
@@ -13,7 +13,7 @@ def create_app():
 
     db.init_app(app)
     migrate = Migrate(app, db)
-    # Import and register routes
+  
     from app.routes import country_bp
     app.register_blueprint(country_bp, url_prefix='/')
 

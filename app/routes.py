@@ -1,4 +1,3 @@
-# app/routes.py
 
 from flask import Blueprint, jsonify, request
 from app.models import Country, CountryNeighbour
@@ -8,7 +7,7 @@ country_bp = Blueprint('country', __name__)
 
 @country_bp.route('/country', methods=['GET'])
 def get_countries():
-    # Query parameters
+   
     sort_by = request.args.get('sort_by', 'a_to_z')
     page = int(request.args.get('page', 1))
     limit = int(request.args.get('limit', 10))
@@ -18,7 +17,7 @@ def get_countries():
 
     query = Country.query
 
-    # Filtering
+  
     if name:
         query = query.filter(Country.name.ilike(f'%{name}%'))
     if region:
@@ -26,7 +25,7 @@ def get_countries():
     if subregion:
         query = query.filter(Country.subregion.ilike(f'%{subregion}%'))
 
-    # Sorting
+  
     if sort_by == 'a_to_z':
         query = query.order_by(Country.name.asc())
     elif sort_by == 'z_to_a':
@@ -40,10 +39,10 @@ def get_countries():
     elif sort_by == 'area_low_to_high':
         query = query.order_by(Country.area.asc())
     else:
-        # Default sorting
+       
         query = query.order_by(Country.name.asc())
 
-    # Pagination
+   
     pagination = query.paginate(page=page, per_page=limit, error_out=False)
     countries = pagination.items
 
